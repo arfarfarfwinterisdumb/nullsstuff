@@ -471,7 +471,29 @@ every_update.dlc (gorilla tag)
 </div>
 
 
+<script type="module">
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyB85-ZUtlP8pY7r67VZZ6ig1HJ16djYVKA",
+  authDomain: "nulls-stuff-official.firebaseapp.com",
+  databaseURL: "https://nulls-stuff-official-default-rtdb.firebaseio.com",
+  projectId: "nulls-stuff-official",
+  storageBucket: "nulls-stuff-official.firebasestorage.app",
+  messagingSenderId: "12929244122",
+  appId: "1:12929244122:web:cf288da601a9f29282fee3",
+  measurementId: "G-7H7ZE9ZRN5"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
 
 <script>
