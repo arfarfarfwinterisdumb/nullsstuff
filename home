@@ -2,10 +2,41 @@
 <html>
 <head>
     <title>Null's Stuff</title>
+    <style>
+        body {
+            background: #0d0d12;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .card {
+            background: #181820;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 15px;
+        }
+
+        button {
+            background: #5865f2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Null's Stuff</h1>
-    <p>Unity projects, games, scripts, and assets.</p>
+
+<h1>Null's Stuff</h1>
+<p>Games, Unity projects, scripts, and assets.</p>
+
+<div class="card">
+    <h2>Example Project</h2>
+    <p>My first Unity project release.</p>
+    <button>Download</button>
+</div>
+
 </body>
 </html>
