@@ -2,7 +2,7 @@
 <html>
 <head>
 
-<title>Null's Stuff (V1.1)</title>
+<title>Null's Stuff (V1.0)</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -12,15 +12,6 @@
 <meta property="og:url" content="https://nullsstuff.mooo.com">
 <meta property="og:type" content="website">
 
-<meta property="og:image:width" content="720">
-<meta property="og:image:height" content="289">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Null's Stuff">
-<meta name="twitter:description" content="Unity projects, games, scripts, and assets.">
-<meta name="twitter:image" content="https://nullsstuff.mooo.com/Screenshot_20260725-231354~2.png">
-
-
 <style>
 
 * {
@@ -29,13 +20,31 @@
 
 
 body {
+
     margin:0;
+
     background:#111;
+
     color:white;
+
     font-family:Arial, sans-serif;
+
     overflow-x:hidden;
+
 }
 
+
+.version {
+
+    text-align:center;
+
+    color:#aaa;
+
+    margin-top:-10px;
+
+    font-size:14px;
+
+}
 
 
 /* Sidebar */
@@ -43,10 +52,13 @@ body {
 .sidebar {
 
     position:fixed;
+
     left:0;
+
     top:0;
 
     width:240px;
+
     height:100vh;
 
     background:#1b1b1b;
@@ -56,22 +68,29 @@ body {
     transition:transform 0.4s ease-in-out;
 
     z-index:10;
+
 }
 
 
 .sidebar.closed {
+
     transform:translateX(-240px);
+
 }
+
 
 
 .sidebar h2 {
+
     text-align:center;
+
 }
+
 
 
 .sidebar button {
 
-    width:85%;
+    width:90%;
 
     margin:10px auto;
 
@@ -79,34 +98,31 @@ body {
 
     padding:12px;
 
-
     border:none;
 
     border-radius:12px;
-
 
     background:#292929;
 
     color:white;
 
-
     cursor:pointer;
 
     font-size:16px;
 
-
-    transition:0.2s;
-
 }
+
 
 
 .sidebar button:hover {
+
     background:#444;
+
 }
 
 
 
-/* Close */
+/* Close button */
 
 .closeBtn {
 
@@ -116,31 +132,22 @@ body {
 
     top:15px;
 
-
     width:40px;
 
     height:40px;
-
 
     border:none;
 
     border-radius:10px;
 
-
     background:#292929;
 
     color:white;
-
 
     font-size:20px;
 
     cursor:pointer;
 
-}
-
-
-.closeBtn:hover {
-    background:#444;
 }
 
 
@@ -155,33 +162,23 @@ body {
 
     top:20px;
 
-
     background:#292929;
 
     color:white;
-
 
     border:none;
 
     border-radius:10px;
 
-
     padding:10px;
-
 
     font-size:20px;
 
-
     cursor:pointer;
-
 
     z-index:20;
 
-
-    opacity:1;
-
-
-    transition:0.4s ease-in-out;
+    transition:0.4s;
 
 }
 
@@ -196,7 +193,6 @@ body {
 
 
 
-
 /* Content */
 
 .content {
@@ -205,8 +201,9 @@ body {
 
     padding:30px;
 
-
     transition:
+
+    margin-left 0.4s ease-in-out,
 
     transform 0.35s ease,
 
@@ -214,6 +211,12 @@ body {
 
 }
 
+
+.content.full {
+
+    margin-left:0;
+
+}
 
 
 .content.animate {
@@ -268,8 +271,7 @@ body {
 
 
 
-
-/* Files */
+/* File cards */
 
 .file {
 
@@ -279,20 +281,17 @@ body {
 
     justify-content:space-between;
 
-
     background:#1b1b1b;
-
 
     border-radius:12px;
 
-
     padding:15px;
-
 
     margin-top:15px;
 
+    width:100%;
 
-    max-width:600px;
+    max-width:900px;
 
 }
 
@@ -322,8 +321,6 @@ body {
 
     color:#aaa;
 
-    font-size:14px;
-
     margin-top:4px;
 
 }
@@ -332,10 +329,9 @@ body {
 
 .downloadBtn {
 
-    width:40px;
+    width:45px;
 
-    height:40px;
-
+    height:45px;
 
     display:flex;
 
@@ -343,26 +339,17 @@ body {
 
     justify-content:center;
 
-
     background:#292929;
-
 
     color:white;
 
-
     border-radius:10px;
-
 
     text-decoration:none;
 
-
-    font-size:24px;
-
-
-    transition:0.2s;
+    font-size:25px;
 
 }
-
 
 
 .downloadBtn:hover {
@@ -377,8 +364,13 @@ body {
 </head>
 
 
-
 <body>
+
+
+
+<button class="toggle hidden" id="toggle" onclick="toggleSidebar()">
+☰
+</button>
 
 
 
@@ -391,6 +383,7 @@ body {
 
 
 <h2>Null's Stuff</h2>
+<p class="version">V1.0</p>
 
 
 <button onclick="switchTab('games')">
@@ -409,13 +402,6 @@ Assets
 
 
 </div>
-
-
-
-
-<button class="toggle hidden" id="toggle" onclick="toggleSidebar()">
-☰
-</button>
 
 
 
@@ -446,6 +432,7 @@ Assets
 
 
 
+
 <div id="assets" class="tab">
 
 <h1>Assets</h1>
@@ -453,7 +440,9 @@ Assets
 
 <div class="file">
 
+
 <div class="fileInfo">
+
 
 <div class="fileName">
 every_update.dlc (gorilla tag)
@@ -466,7 +455,6 @@ every_update.dlc (gorilla tag)
 
 
 </div>
-
 
 
 <a class="downloadBtn" href="https://drive.google.com/uc?export=download&id=15myLewAj-xG4phZZ_hKVqk0XcWG48-4q">
@@ -486,38 +474,45 @@ every_update.dlc (gorilla tag)
 
 
 
-
 <script>
 
 
-const sidebar = document.getElementById("sidebar");
+const sidebar =
+document.getElementById("sidebar");
 
-const toggle = document.getElementById("toggle");
 
-const content = document.getElementById("content");
+const toggle =
+document.getElementById("toggle");
+
+
+const content =
+document.getElementById("content");
 
 
 
 function toggleSidebar(){
 
 
-sidebar.classList.toggle("closed");
+    sidebar.classList.toggle("closed");
 
 
-if(sidebar.classList.contains("closed")){
+    content.classList.toggle("full");
 
-toggle.classList.remove("hidden");
+
+    if(sidebar.classList.contains("closed")){
+
+        toggle.classList.remove("hidden");
+
+    }
+
+    else {
+
+        toggle.classList.add("hidden");
+
+    }
 
 }
 
-else {
-
-toggle.classList.add("hidden");
-
-}
-
-
-}
 
 
 
@@ -525,28 +520,28 @@ toggle.classList.add("hidden");
 function switchTab(name){
 
 
-content.classList.add("animate");
+    content.classList.add("animate");
 
 
-setTimeout(()=>{
+    setTimeout(()=>{
 
 
-document.querySelectorAll(".tab")
-.forEach(tab=>{
+        document.querySelectorAll(".tab")
+        .forEach(tab=>{
 
-tab.classList.remove("active");
+            tab.classList.remove("active");
 
-});
-
-
-document.getElementById(name)
-.classList.add("active");
+        });
 
 
-content.classList.remove("animate");
+        document.getElementById(name)
+        .classList.add("active");
 
 
-},350);
+        content.classList.remove("animate");
+
+
+    },350);
 
 
 }
