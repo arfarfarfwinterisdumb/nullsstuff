@@ -408,14 +408,15 @@ Assets
 
 
 
-<div class="content" id="content">
-
-
 <div id="games" class="tab active">
 
 <h1>Games</h1>
 
-<p>My games will appear here.</p>
+<div id="gameFiles">
+
+<p>Loading games...</p>
+
+</div>
 
 </div>
 
@@ -426,7 +427,11 @@ Assets
 
 <h1>Projects</h1>
 
-<p>My Unity projects will appear here.</p>
+<div id="projectFiles">
+
+<p>Loading projects...</p>
+
+</div>
 
 </div>
 
@@ -491,34 +496,61 @@ const db = getFirestore(app);
 
 async function loadFiles(){
 
+    const gameContainer =
+    document.getElementById("gameFiles");
 
-    const container = document.getElementById("assetFiles");
+    const projectContainer =
+    document.getElementById("projectFiles");
+
+    const assetContainer =
+    document.getElementById("assetFiles");
 
 
-    container.innerHTML = "";
+    gameContainer.innerHTML = "";
+
+    projectContainer.innerHTML = "";
+
+    assetContainer.innerHTML = "";
 
 
-    const snapshot = await getDocs(collection(db, "downloads"));
-
+    const snapshot =
+    await getDocs(collection(db,"downloads"));
 
 
     snapshot.forEach((doc)=>{
 
-
         const file = doc.data();
 
 
+        let container = null;
 
-        if(file.category === "assets"){
 
+        if(file.category === "games"){
+
+            container = gameContainer;
+
+        }
+
+        else if(file.category === "projects"){
+
+            container = projectContainer;
+
+        }
+
+        else if(file.category === "assets"){
+
+            container = assetContainer;
+
+        }
+
+
+        if(container){
 
             container.innerHTML += `
 
             <div class="file">
 
-
                 <div class="fileInfo">
-
 
                     <div class="fileName">
 
@@ -526,38 +558,29 @@ async function loadFiles(){
 
                     </div>
 
-
-
                     <div class="fileSize">
 
                         ${file.size}
 
                     </div>
 
-
                 </div>
 
-
-
                 <a class="downloadBtn"
-
-                href="${file.download}">
+                href="${file.download}"
+                target="_blank">
 
                 ↓
 
                 </a>
 
-
             </div>
 
             `;
 
-
         }
 
-
     });
-
 
 }
 
