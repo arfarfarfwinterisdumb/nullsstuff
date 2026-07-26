@@ -1,40 +1,269 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Null's Stuff (made with ai/gpt)</title>
+<title>Null's Stuff</title>
 
 <style>
-body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#111;
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #111;
+    color: white;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* Sidebar */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 240px;
+    height: 100vh;
+    background: #1b1b1b;
+    padding-top: 20px;
+    transition: transform 0.4s ease-in-out;
+    z-index: 10;
+}
+
+.sidebar.closed {
+    transform: translateX(-240px);
+}
+
+.sidebar h2 {
+    text-align: center;
+}
+
+.sidebar button {
+    width: 85%;
+    margin: 10px auto;
+    display: block;
+    padding: 12px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #292929;
+    color: white;
+
+    cursor: pointer;
+    font-size: 16px;
+
+    transition: 0.2s;
+}
+
+.sidebar button:hover {
+    background: #444;
+}
+
+
+/* Open button */
+
+.toggle {
+    position: fixed;
+    left: 250px;
+    top: 20px;
+
+    background: #292929;
     color:white;
-}
 
-.sidebar{
-    position:fixed;
-    left:0;
-    top:0;
-    width:220px;
-    height:100vh;
-    background:#1b1b1b;
-    padding-top:20px;
-    box-sizing:border-box;
-}
-
-.sidebar h2{
-    text-align:center;
-}
-
-.sidebar button{
-    width:90%;
-    margin:8px auto;
-    display:block;
-    padding:12px;
     border:none;
     border-radius:10px;
+
+    padding:10px;
+
+    cursor:pointer;
+
+    transition:0.4s ease-in-out;
+    z-index:20;
+}
+
+.toggle.closed {
+    left:10px;
+}
+
+
+/* Content */
+
+.content {
+
+    margin-left:240px;
+    padding:30px;
+
+    transition:
+        transform 0.35s ease,
+        opacity 0.35s ease;
+}
+
+
+.content.animate {
+
+    transform:translateX(-60px);
+    opacity:0;
+
+}
+
+
+/* Tabs */
+
+.tab {
+    display:none;
+}
+
+.tab.active {
+    display:block;
+    animation: enter 0.35s ease;
+}
+
+
+@keyframes enter {
+
+    from {
+        transform:translateX(60px);
+        opacity:0;
+    }
+
+    to {
+        transform:translateX(0);
+        opacity:1;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="sidebar" id="sidebar">
+
+<h2>Null's Stuff</h2>
+
+<button onclick="switchTab('games')">
+Games
+</button>
+
+<button onclick="switchTab('projects')">
+Projects
+</button>
+
+<button onclick="switchTab('assets')">
+Assets
+</button>
+
+</div>
+
+
+
+<button class="toggle" id="toggle" onclick="toggleSidebar()">
+☰
+</button>
+
+
+
+<div class="content" id="content">
+
+
+<div id="games" class="tab active">
+
+<h1>Games</h1>
+
+<p>Your games will appear here.</p>
+
+</div>
+
+
+
+<div id="projects" class="tab">
+
+<h1>Projects</h1>
+
+<p>Your Unity projects will appear here.</p>
+
+</div>
+
+
+
+<div id="assets" class="tab">
+
+<h1>Assets</h1>
+
+<p>Your assets and scripts will appear here.</p>
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+
+const sidebar =
+document.getElementById("sidebar");
+
+const toggle =
+document.getElementById("toggle");
+
+const content =
+document.getElementById("content");
+
+
+
+function toggleSidebar(){
+
+sidebar.classList.toggle("closed");
+
+toggle.classList.toggle("closed");
+
+}
+
+
+
+function switchTab(name){
+
+
+content.classList.add("animate");
+
+
+setTimeout(()=>{
+
+
+let tabs =
+document.querySelectorAll(".tab");
+
+
+tabs.forEach(tab=>{
+tab.classList.remove("active");
+});
+
+
+document.getElementById(name)
+.classList.add("active");
+
+
+content.classList.remove("animate");
+
+
+},350);
+
+
+}
+
+
+</script>
+
+
+</body>
+</html>    border-radius:10px;
     background:#2d2d2d;
     color:white;
     cursor:pointer;
