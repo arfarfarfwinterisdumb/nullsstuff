@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <title>Null's Stuff</title>
 
 <style>
@@ -8,6 +9,7 @@
 * {
     box-sizing:border-box;
 }
+
 
 body {
     margin:0;
@@ -21,7 +23,9 @@ body {
 /* Sidebar */
 
 .sidebar {
+
     position:fixed;
+
     left:0;
     top:0;
 
@@ -39,17 +43,23 @@ body {
 
 
 .sidebar.closed {
+
     transform:translateX(-240px);
+
 }
 
 
 .sidebar h2 {
+
     text-align:center;
+
 }
 
 
 .sidebar button {
+
     width:85%;
+
     margin:10px auto;
 
     display:block;
@@ -57,49 +67,67 @@ body {
     padding:12px;
 
     border:none;
+
     border-radius:12px;
 
     background:#292929;
+
     color:white;
 
     cursor:pointer;
+
     font-size:16px;
 
     transition:0.2s;
+
 }
 
 
 .sidebar button:hover {
+
     background:#444;
+
 }
 
 
-/* X button */
+
+/* Close button */
 
 .closeBtn {
 
     position:absolute;
 
     right:15px;
+
     top:15px;
 
+
     width:40px;
+
     height:40px;
 
+
     border:none;
+
     border-radius:10px;
 
+
     background:#292929;
+
     color:white;
+
 
     font-size:20px;
 
     cursor:pointer;
+
 }
 
 
 .closeBtn:hover {
+
     background:#444;
+
 }
 
 
@@ -111,23 +139,37 @@ body {
     position:fixed;
 
     left:250px;
+
     top:20px;
 
+
     background:#292929;
+
     color:white;
 
+
     border:none;
+
     border-radius:10px;
+
 
     padding:10px;
 
+
     font-size:20px;
+
 
     cursor:pointer;
 
+
     z-index:20;
 
+
+    opacity:1;
+
+
     transition:0.4s ease-in-out;
+
 }
 
 
@@ -149,8 +191,11 @@ body {
 
     padding:30px;
 
+
     transition:
+
     transform 0.35s ease,
+
     opacity 0.35s ease;
 
 }
@@ -188,6 +233,7 @@ body {
 
 @keyframes enter {
 
+
     from {
 
         transform:translateX(60px);
@@ -211,6 +257,7 @@ body {
 </style>
 
 </head>
+
 
 
 <body>
@@ -246,7 +293,8 @@ Assets
 
 
 
-<button class="toggle" id="toggle" onclick="toggleSidebar()">
+
+<button class="toggle hidden" id="toggle" onclick="toggleSidebar()">
 ☰
 </button>
 
@@ -294,30 +342,40 @@ Assets
 <script>
 
 
-const sidebar =
-document.getElementById("sidebar");
+const sidebar = document.getElementById("sidebar");
 
+const toggle = document.getElementById("toggle");
 
-const toggle =
-document.getElementById("toggle");
-
-
-const content =
-document.getElementById("content");
+const content = document.getElementById("content");
 
 
 
 function toggleSidebar(){
 
+
     sidebar.classList.toggle("closed");
 
-    toggle.classList.toggle("hidden");
+
+    if(sidebar.classList.contains("closed")){
+
+        toggle.classList.remove("hidden");
+
+    }
+
+    else {
+
+        toggle.classList.add("hidden");
+
+    }
 
 }
 
 
 
+
+
 function switchTab(name){
+
 
     content.classList.add("animate");
 
@@ -327,7 +385,9 @@ function switchTab(name){
 
         document.querySelectorAll(".tab")
         .forEach(tab=>{
+
             tab.classList.remove("active");
+
         });
 
 
@@ -340,10 +400,12 @@ function switchTab(name){
 
     },350);
 
+
 }
 
 
 </script>
+
 
 
 </body>
