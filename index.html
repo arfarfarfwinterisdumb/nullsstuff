@@ -4,71 +4,116 @@
 <title>Null's Stuff</title>
 
 <style>
+
 * {
-    box-sizing: border-box;
+    box-sizing:border-box;
 }
 
 body {
-    margin: 0;
-    background: #111;
-    color: white;
-    font-family: Arial, sans-serif;
-    overflow-x: hidden;
+    margin:0;
+    background:#111;
+    color:white;
+    font-family:Arial, sans-serif;
+    overflow-x:hidden;
 }
+
 
 /* Sidebar */
 
 .sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 240px;
-    height: 100vh;
-    background: #1b1b1b;
-    padding-top: 20px;
-    transition: transform 0.4s ease-in-out;
-    z-index: 10;
+    position:fixed;
+    left:0;
+    top:0;
+
+    width:240px;
+    height:100vh;
+
+    background:#1b1b1b;
+
+    padding-top:60px;
+
+    transition:transform 0.4s ease-in-out;
+
+    z-index:10;
 }
+
 
 .sidebar.closed {
-    transform: translateX(-240px);
+    transform:translateX(-240px);
 }
+
 
 .sidebar h2 {
-    text-align: center;
+    text-align:center;
 }
+
 
 .sidebar button {
-    width: 85%;
-    margin: 10px auto;
-    display: block;
-    padding: 12px;
+    width:85%;
+    margin:10px auto;
 
-    border: none;
-    border-radius: 12px;
+    display:block;
 
-    background: #292929;
-    color: white;
+    padding:12px;
 
-    cursor: pointer;
-    font-size: 16px;
+    border:none;
+    border-radius:12px;
 
-    transition: 0.2s;
+    background:#292929;
+    color:white;
+
+    cursor:pointer;
+    font-size:16px;
+
+    transition:0.2s;
 }
+
 
 .sidebar button:hover {
-    background: #444;
+    background:#444;
 }
+
+
+/* X button */
+
+.closeBtn {
+
+    position:absolute;
+
+    right:15px;
+    top:15px;
+
+    width:40px;
+    height:40px;
+
+    border:none;
+    border-radius:10px;
+
+    background:#292929;
+    color:white;
+
+    font-size:20px;
+
+    cursor:pointer;
+}
+
+
+.closeBtn:hover {
+    background:#444;
+}
+
 
 
 /* Open button */
 
 .toggle {
-    position: fixed;
-    left: 250px;
-    top: 20px;
 
-    background: #292929;
+    position:fixed;
+
+    left:250px;
+    top:20px;
+
+    background:#292929;
     color:white;
 
     border:none;
@@ -76,15 +121,24 @@ body {
 
     padding:10px;
 
+    font-size:20px;
+
     cursor:pointer;
 
-    transition:0.4s ease-in-out;
     z-index:20;
+
+    transition:0.4s ease-in-out;
 }
 
-.toggle.closed {
-    left:10px;
+
+.toggle.hidden {
+
+    opacity:0;
+
+    pointer-events:none;
+
 }
+
 
 
 /* Content */
@@ -92,47 +146,67 @@ body {
 .content {
 
     margin-left:240px;
+
     padding:30px;
 
     transition:
-        transform 0.35s ease,
-        opacity 0.35s ease;
+    transform 0.35s ease,
+    opacity 0.35s ease;
+
 }
+
 
 
 .content.animate {
 
     transform:translateX(-60px);
+
     opacity:0;
 
 }
 
 
+
 /* Tabs */
 
 .tab {
+
     display:none;
+
 }
 
+
 .tab.active {
+
     display:block;
-    animation: enter 0.35s ease;
+
+    animation:enter 0.35s ease;
+
 }
+
 
 
 @keyframes enter {
 
     from {
+
         transform:translateX(60px);
+
         opacity:0;
+
     }
 
+
     to {
+
         transform:translateX(0);
+
         opacity:1;
+
     }
 
 }
+
 
 </style>
 
@@ -144,19 +218,29 @@ body {
 
 <div class="sidebar" id="sidebar">
 
+
+<button class="closeBtn" onclick="toggleSidebar()">
+✕
+</button>
+
+
 <h2>Null's Stuff</h2>
+
 
 <button onclick="switchTab('games')">
 Games
 </button>
 
+
 <button onclick="switchTab('projects')">
 Projects
 </button>
 
+
 <button onclick="switchTab('assets')">
 Assets
 </button>
+
 
 </div>
 
@@ -165,6 +249,7 @@ Assets
 <button class="toggle" id="toggle" onclick="toggleSidebar()">
 ☰
 </button>
+
 
 
 
@@ -204,14 +289,18 @@ Assets
 
 
 
+
+
 <script>
 
 
 const sidebar =
 document.getElementById("sidebar");
 
+
 const toggle =
 document.getElementById("toggle");
+
 
 const content =
 document.getElementById("content");
@@ -220,9 +309,9 @@ document.getElementById("content");
 
 function toggleSidebar(){
 
-sidebar.classList.toggle("closed");
+    sidebar.classList.toggle("closed");
 
-toggle.classList.toggle("closed");
+    toggle.classList.toggle("hidden");
 
 }
 
@@ -230,31 +319,26 @@ toggle.classList.toggle("closed");
 
 function switchTab(name){
 
-
-content.classList.add("animate");
-
-
-setTimeout(()=>{
+    content.classList.add("animate");
 
 
-let tabs =
-document.querySelectorAll(".tab");
+    setTimeout(()=>{
 
 
-tabs.forEach(tab=>{
-tab.classList.remove("active");
-});
+        document.querySelectorAll(".tab")
+        .forEach(tab=>{
+            tab.classList.remove("active");
+        });
 
 
-document.getElementById(name)
-.classList.add("active");
+        document.getElementById(name)
+        .classList.add("active");
 
 
-content.classList.remove("animate");
+        content.classList.remove("animate");
 
 
-},350);
-
+    },350);
 
 }
 
