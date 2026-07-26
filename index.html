@@ -2,29 +2,24 @@
 <html>
 <head>
 
-<title>Null's Stuff (V1.0)</title>
+<title>Null's Stuff (V1.1)</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <meta property="og:title" content="Null's Stuff">
-
 <meta property="og:description" content="Unity projects, games, scripts, and assets.">
-
 <meta property="og:image" content="https://nullsstuff.mooo.com/Screenshot_20260725-231354~2.png">
-
 <meta property="og:url" content="https://nullsstuff.mooo.com">
-
 <meta property="og:type" content="website">
 
 <meta property="og:image:width" content="720">
-
 <meta property="og:image:height" content="289">
 
 <meta name="twitter:card" content="summary_large_image">
-
 <meta name="twitter:title" content="Null's Stuff">
-
 <meta name="twitter:description" content="Unity projects, games, scripts, and assets.">
-
 <meta name="twitter:image" content="https://nullsstuff.mooo.com/Screenshot_20260725-231354~2.png">
+
 
 <style>
 
@@ -42,10 +37,12 @@ body {
 }
 
 
+
+/* Sidebar */
+
 .sidebar {
 
     position:fixed;
-
     left:0;
     top:0;
 
@@ -63,16 +60,12 @@ body {
 
 
 .sidebar.closed {
-
     transform:translateX(-240px);
-
 }
 
 
 .sidebar h2 {
-
     text-align:center;
-
 }
 
 
@@ -86,17 +79,21 @@ body {
 
     padding:12px;
 
+
     border:none;
 
     border-radius:12px;
+
 
     background:#292929;
 
     color:white;
 
+
     cursor:pointer;
 
     font-size:16px;
+
 
     transition:0.2s;
 
@@ -104,11 +101,12 @@ body {
 
 
 .sidebar button:hover {
-
     background:#444;
-
 }
 
+
+
+/* Close */
 
 .closeBtn {
 
@@ -142,11 +140,12 @@ body {
 
 
 .closeBtn:hover {
-
     background:#444;
-
 }
 
+
+
+/* Open button */
 
 .toggle {
 
@@ -186,6 +185,7 @@ body {
 
 }
 
+
 .toggle.hidden {
 
     opacity:0;
@@ -194,6 +194,10 @@ body {
 
 }
 
+
+
+
+/* Content */
 
 .content {
 
@@ -221,6 +225,9 @@ body {
 }
 
 
+
+/* Tabs */
+
 .tab {
 
     display:none;
@@ -239,7 +246,6 @@ body {
 
 
 @keyframes enter {
-
 
     from {
 
@@ -261,6 +267,111 @@ body {
 }
 
 
+
+
+/* Files */
+
+.file {
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+
+    background:#1b1b1b;
+
+
+    border-radius:12px;
+
+
+    padding:15px;
+
+
+    margin-top:15px;
+
+
+    max-width:600px;
+
+}
+
+
+
+.fileInfo {
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+
+.fileName {
+
+    font-size:17px;
+
+    font-weight:bold;
+
+}
+
+
+
+.fileSize {
+
+    color:#aaa;
+
+    font-size:14px;
+
+    margin-top:4px;
+
+}
+
+
+
+.downloadBtn {
+
+    width:40px;
+
+    height:40px;
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    background:#292929;
+
+
+    color:white;
+
+
+    border-radius:10px;
+
+
+    text-decoration:none;
+
+
+    font-size:24px;
+
+
+    transition:0.2s;
+
+}
+
+
+
+.downloadBtn:hover {
+
+    background:#444;
+
+}
+
+
 </style>
 
 </head>
@@ -268,6 +379,7 @@ body {
 
 
 <body>
+
 
 
 <div class="sidebar" id="sidebar">
@@ -308,6 +420,7 @@ Assets
 
 
 
+
 <div class="content" id="content">
 
 
@@ -321,6 +434,7 @@ Assets
 
 
 
+
 <div id="projects" class="tab">
 
 <h1>Projects</h1>
@@ -331,16 +445,43 @@ Assets
 
 
 
+
 <div id="assets" class="tab">
 
 <h1>Assets</h1>
 
-<p>My assets and scripts will appear here.</p>
+
+<div class="file">
+
+<div class="fileInfo">
+
+<div class="fileName">
+every_update.dlc (gorilla tag)
+</div>
+
+
+<div class="fileSize">
+501KB
+</div>
+
+
+</div>
+
+
+
+<a class="downloadBtn" href="https://drive.google.com/uc?export=download&id=15myLewAj-xG4phZZ_hKVqk0XcWG48-4q">
+↓
+</a>
+
 
 </div>
 
 
 </div>
+
+
+</div>
+
 
 
 
@@ -360,23 +501,23 @@ const content = document.getElementById("content");
 function toggleSidebar(){
 
 
-    sidebar.classList.toggle("closed");
+sidebar.classList.toggle("closed");
 
 
-    if(sidebar.classList.contains("closed")){
+if(sidebar.classList.contains("closed")){
 
-        toggle.classList.remove("hidden");
-
-    }
-
-    else {
-
-        toggle.classList.add("hidden");
-
-    }
+toggle.classList.remove("hidden");
 
 }
 
+else {
+
+toggle.classList.add("hidden");
+
+}
+
+
+}
 
 
 
@@ -384,28 +525,28 @@ function toggleSidebar(){
 function switchTab(name){
 
 
-    content.classList.add("animate");
+content.classList.add("animate");
 
 
-    setTimeout(()=>{
+setTimeout(()=>{
 
 
-        document.querySelectorAll(".tab")
-        .forEach(tab=>{
+document.querySelectorAll(".tab")
+.forEach(tab=>{
 
-            tab.classList.remove("active");
+tab.classList.remove("active");
 
-        });
-
-
-        document.getElementById(name)
-        .classList.add("active");
+});
 
 
-        content.classList.remove("animate");
+document.getElementById(name)
+.classList.add("active");
 
 
-    },350);
+content.classList.remove("animate");
+
+
+},350);
 
 
 }
