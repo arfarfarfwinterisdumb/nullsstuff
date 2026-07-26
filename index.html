@@ -18,47 +18,31 @@
     box-sizing:border-box;
 }
 
-
 body {
-
     margin:0;
-
     background:#111;
-
     color:white;
-
     font-family:Arial, sans-serif;
-
     overflow-x:hidden;
-
 }
 
 
 .version {
-
     text-align:center;
-
     color:#aaa;
-
     margin-top:-10px;
-
     font-size:14px;
-
 }
 
 
 /* Sidebar */
 
 .sidebar {
-
     position:fixed;
-
     left:0;
-
     top:0;
 
     width:240px;
-
     height:100vh;
 
     background:#1b1b1b;
@@ -68,24 +52,17 @@ body {
     transition:transform 0.4s ease-in-out;
 
     z-index:10;
-
 }
 
 
 .sidebar.closed {
-
     transform:translateX(-240px);
-
 }
-
 
 
 .sidebar h2 {
-
     text-align:center;
-
 }
-
 
 
 .sidebar button {
@@ -113,13 +90,11 @@ body {
 }
 
 
-
 .sidebar button:hover {
 
     background:#444;
 
 }
-
 
 
 /* Close button */
@@ -132,17 +107,21 @@ body {
 
     top:15px;
 
+
     width:40px;
 
     height:40px;
+
 
     border:none;
 
     border-radius:10px;
 
+
     background:#292929;
 
     color:white;
+
 
     font-size:20px;
 
@@ -150,6 +129,12 @@ body {
 
 }
 
+
+.closeBtn:hover {
+
+    background:#444;
+
+}
 
 
 /* Open button */
@@ -162,21 +147,28 @@ body {
 
     top:20px;
 
+
     background:#292929;
 
     color:white;
+
 
     border:none;
 
     border-radius:10px;
 
+
     padding:10px;
+
 
     font-size:20px;
 
+
     cursor:pointer;
 
+
     z-index:20;
+
 
     transition:0.4s;
 
@@ -200,6 +192,7 @@ body {
     margin-left:240px;
 
     padding:30px;
+
 
     transition:
 
@@ -226,7 +219,6 @@ body {
     opacity:0;
 
 }
-
 
 
 /* Tabs */
@@ -271,7 +263,7 @@ body {
 
 
 
-/* File cards */
+/* Files */
 
 .file {
 
@@ -281,20 +273,24 @@ body {
 
     justify-content:space-between;
 
+
     background:#1b1b1b;
+
 
     border-radius:12px;
 
+
     padding:15px;
 
+
     margin-top:15px;
+
 
     width:100%;
 
     max-width:900px;
 
 }
-
 
 
 .fileInfo {
@@ -306,7 +302,6 @@ body {
 }
 
 
-
 .fileName {
 
     font-size:17px;
@@ -314,7 +309,6 @@ body {
     font-weight:bold;
 
 }
-
 
 
 .fileSize {
@@ -333,19 +327,25 @@ body {
 
     height:45px;
 
+
     display:flex;
 
     align-items:center;
 
     justify-content:center;
 
+
     background:#292929;
+
 
     color:white;
 
+
     border-radius:10px;
 
+
     text-decoration:none;
+
 
     font-size:25px;
 
@@ -367,7 +367,6 @@ body {
 <body>
 
 
-
 <button class="toggle hidden" id="toggle" onclick="toggleSidebar()">
 ☰
 </button>
@@ -383,7 +382,10 @@ body {
 
 
 <h2>Null's Stuff</h2>
-<p class="version">V1.0</p>
+
+<p class="version">
+V1.0
+</p>
 
 
 <button onclick="switchTab('games')">
@@ -402,7 +404,6 @@ Assets
 
 
 </div>
-
 
 
 
@@ -432,35 +433,14 @@ Assets
 
 
 
-
 <div id="assets" class="tab">
 
 <h1>Assets</h1>
 
 
-<div class="file">
+<div id="assetFiles">
 
-
-<div class="fileInfo">
-
-
-<div class="fileName">
-every_update.dlc (gorilla tag)
-</div>
-
-
-<div class="fileSize">
-501KB
-</div>
-
-
-</div>
-
-
-<a class="downloadBtn" href="https://drive.google.com/uc?export=download&id=15myLewAj-xG4phZZ_hKVqk0XcWG48-4q">
-↓
-</a>
-
+<p>Loading files...</p>
 
 </div>
 
@@ -469,31 +449,128 @@ every_update.dlc (gorilla tag)
 
 
 </div>
-
-
 <script type="module">
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import { 
+    getFirestore,
+    collection,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+
 const firebaseConfig = {
-  apiKey: "AIzaSyB85-ZUtlP8pY7r67VZZ6ig1HJ16djYVKA",
-  authDomain: "nulls-stuff-official.firebaseapp.com",
-  databaseURL: "https://nulls-stuff-official-default-rtdb.firebaseio.com",
-  projectId: "nulls-stuff-official",
-  storageBucket: "nulls-stuff-official.firebasestorage.app",
-  messagingSenderId: "12929244122",
-  appId: "1:12929244122:web:cf288da601a9f29282fee3",
-  measurementId: "G-7H7ZE9ZRN5"
+
+    apiKey: "AIzaSyB85-ZUtlP8pY7r67VZZ6ig1HJ16djYVKA",
+
+    authDomain: "nulls-stuff-official.firebaseapp.com",
+
+    projectId: "nulls-stuff-official",
+
+    storageBucket: "nulls-stuff-official.firebasestorage.app",
+
+    messagingSenderId: "12929244122",
+
+    appId: "1:12929244122:web:cf288da601a9f29282fee3"
+
 };
 
-// Initialize Firebase
+
+
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+
+const db = getFirestore(app);
+
+
+
+
+
+// Load files from Firestore
+
+async function loadFiles(){
+
+
+    const container = document.getElementById("assetFiles");
+
+
+    container.innerHTML = "";
+
+
+    const snapshot = await getDocs(collection(db, "downloads"));
+
+
+
+    snapshot.forEach((doc)=>{
+
+
+        const file = doc.data();
+
+
+
+        if(file.category === "assets"){
+
+
+            container.innerHTML += `
+
+            <div class="file">
+
+
+                <div class="fileInfo">
+
+
+                    <div class="fileName">
+
+                        ${file.name}
+
+                    </div>
+
+
+
+                    <div class="fileSize">
+
+                        ${file.size}
+
+                    </div>
+
+
+                </div>
+
+
+
+                <a class="downloadBtn"
+
+                href="${file.download}">
+
+                ↓
+
+                </a>
+
+
+            </div>
+
+            `;
+
+
+        }
+
+
+    });
+
+
+}
+
+
+
+loadFiles();
+
+
+
+</script>
+
+
+
 
 
 <script>
@@ -512,6 +589,8 @@ document.getElementById("content");
 
 
 
+
+
 function toggleSidebar(){
 
 
@@ -521,17 +600,23 @@ function toggleSidebar(){
     content.classList.toggle("full");
 
 
+
     if(sidebar.classList.contains("closed")){
 
+
         toggle.classList.remove("hidden");
+
 
     }
 
     else {
 
+
         toggle.classList.add("hidden");
 
+
     }
+
 
 }
 
@@ -545,28 +630,36 @@ function switchTab(name){
     content.classList.add("animate");
 
 
+
     setTimeout(()=>{
 
 
         document.querySelectorAll(".tab")
         .forEach(tab=>{
 
+
             tab.classList.remove("active");
 
+
         });
+
 
 
         document.getElementById(name)
         .classList.add("active");
 
 
+
         content.classList.remove("animate");
+
 
 
     },350);
 
 
+
 }
+
 
 
 </script>
@@ -574,4 +667,5 @@ function switchTab(name){
 
 
 </body>
+
 </html>
