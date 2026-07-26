@@ -1,40 +1,109 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Null's Stuff</title>
-    <style>
-        body {
-            background: #0d0d12;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Null's Stuff (made with ai/gpt)</title>
 
-        .card {
-            background: #181820;
-            padding: 20px;
-            margin: 20px;
-            border-radius: 15px;
-        }
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#111;
+    color:white;
+}
 
-        button {
-            background: #5865f2;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-        }
-    </style>
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:220px;
+    height:100vh;
+    background:#1b1b1b;
+    padding-top:20px;
+    box-sizing:border-box;
+}
+
+.sidebar h2{
+    text-align:center;
+}
+
+.sidebar button{
+    width:90%;
+    margin:8px auto;
+    display:block;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#2d2d2d;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.sidebar button:hover{
+    background:#444;
+}
+
+.content{
+    margin-left:240px;
+    padding:25px;
+}
+
+.tab{
+    display:none;
+}
+
+.tab.active{
+    display:block;
+}
+</style>
 </head>
 
 <body>
 
-<h1>Null's Stuff</h1>
-<p>Games, Unity projects, scripts, and assets.</p>
+<div class="sidebar">
+    <h2>Null's Stuff</h2>
 
-<div class="card">
-    <h2>Example Project</h2>
-    <p>My first Unity project release.</p>
+    <button onclick="showTab('games')">Games</button>
+    <button onclick="showTab('projects')">Projects</button>
+    <button onclick="showTab('assets')">Assets</button>
+</div>
+
+<div class="content">
+
+    <div id="games" class="tab active">
+        <h1>Games</h1>
+        <p>Your games will appear here.</p>
+    </div>
+
+    <div id="projects" class="tab">
+        <h1>Projects</h1>
+        <p>Your Unity projects will appear here.</p>
+    </div>
+
+    <div id="assets" class="tab">
+        <h1>Assets</h1>
+        <p>Your assets and scripts will appear here.</p>
+    </div>
+
+</div>
+
+<script>
+function showTab(tabName){
+
+    let tabs=document.querySelectorAll(".tab");
+
+    tabs.forEach(tab=>{
+        tab.classList.remove("active");
+    });
+
+    document.getElementById(tabName).classList.add("active");
+}
+</script>
+
+</body>
+</html>    <p>My first Unity project release.</p>
     <button>Download</button>
 </div>
 
